@@ -8,10 +8,11 @@
 ##' 
 ##' @title create
 ##' @param dep_source_paths files to find package dependencies in.
+##' @param lockfile path to write the lockfile; defaults to "renv.lock" in the current project.
 ##' @return nothing. Creates a capsule as a side effect.
 ##' @author Miles McBain
 ##' @export
-create <- function(dep_source_paths = "./packages.R") {
+create <- function(dep_source_paths = "./packages.R", lockfile = renv::paths$lockfile()) {
 
   callr::r(function(){
     renv::init(bare = TRUE)
@@ -27,6 +28,7 @@ create <- function(dep_source_paths = "./packages.R") {
 
   renv::snapshot(type = "simple",
                  library = c(renv::paths$library()),
+                 lockfile = lockfile,
                  confirm = FALSE,
                  force = TRUE)
 

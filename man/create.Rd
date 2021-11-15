@@ -4,10 +4,12 @@
 \alias{create}
 \title{create}
 \usage{
-create(dep_source_paths = "./packages.R")
+create(dep_source_paths = "./packages.R", lockfile = renv::paths$lockfile())
 }
 \arguments{
 \item{dep_source_paths}{files to find package dependencies in.}
+
+\item{lockfile}{path to write the lockfile; defaults to "renv.lock" in the current project.}
 }
 \value{
 nothing. Creates a capsule as a side effect.
